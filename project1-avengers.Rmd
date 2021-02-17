@@ -10,7 +10,7 @@ library(tidyverse)
 ```
 
 ```{r data-import}
-avengers <- read_csv("/Users/yedam/Documents/GitHub/DSP/Project 1/538-data/avengers/avengers.csv")
+avengers <- read_csv("/Users/yedam/Documents/GitHub/DSP/Project/538-data/avengers/avengers.csv")
 ```
 
 ```{r insepct-data}
@@ -20,7 +20,13 @@ glimpse(avengers)
 
 ```{r mortality}
 # What's the mortality rate of the Avengers? 
-
+avengers %>% 
+  ggplot(mapping = aes(x = Death1)) +
+  geom_bar() +
+  coord_flip() +
+  labs(x = "Death",
+       y = "Number of Deaths",
+       title = "Mortality of the Avengers")
 
 ```
 
