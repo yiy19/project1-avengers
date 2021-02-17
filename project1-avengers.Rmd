@@ -1,0 +1,38 @@
+---
+title: "Project 1 - Avengers"
+author: "Ye Dam Yi"
+date: "2/16/2021"
+output: html_document
+---
+
+```{r}
+library(tidyverse)
+```
+
+```{r data-import}
+avengers <- read_csv("/Users/yedam/Documents/GitHub/DSP/Project 1/538-data/avengers/avengers.csv")
+```
+
+```{r insepct-data}
+names(avengers)
+glimpse(avengers)
+```
+
+```{r mortality}
+# What's the mortality rate of the Avengers? 
+
+
+```
+
+```{r gender-mortality}
+
+#What's the mortality rate of the Avengers by gender?
+avengers %>% 
+ggplot(mapping = aes(x = Gender, fill = Death1)) +
+  geom_bar(position = "fill") +
+  coord_flip() +
+  labs(x = "Death",
+       y = "Gender",
+       title = "Mortality of the Avengers",
+       subtitle = "By gender")
+```
