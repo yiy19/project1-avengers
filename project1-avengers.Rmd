@@ -18,15 +18,20 @@ names(avengers)
 glimpse(avengers)
 ```
 
-```{r mortality}
+```{r mortality, fig.height=5, fig.width=6}
+# create color blind friendly palette
+# The palette with grey:
+cb.palette <- c("#999999", "#E69F00", "#56B4E9", "#009E73", "#F0E442", "#0072B2", "#D55E00", "#CC79A7")
+
 # What's the mortality rate of the Avengers? 
 avengers %>% 
   ggplot(mapping = aes(x = Death1)) +
-  geom_bar() +
+  geom_bar(fill="#E69F00", colour="black") +
   coord_flip() +
   labs(x = "Death",
        y = "Number of Deaths",
-       title = "Mortality of the Avengers")
+       title = "Mortality of the Avengers") 
+
 
 ```
 
@@ -35,10 +40,15 @@ avengers %>%
 #What's the mortality rate of the Avengers by gender?
 avengers %>% 
 ggplot(mapping = aes(x = Gender, fill = Death1)) +
-  geom_bar(position = "fill") +
+  geom_bar(colour="black", position = "fill") +
   coord_flip() +
   labs(x = "Death",
        y = "Gender",
        title = "Mortality of the Avengers",
-       subtitle = "By gender")
+       subtitle = "By gender") + 
+    scale_fill_manual(values=cb.palette)
+
+
 ```
+
+```[r ]
