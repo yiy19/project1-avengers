@@ -42,22 +42,18 @@ avengers$death1_recode
 
 ```
 
-```{r create-proportion}
-# create a frequency proportion
-
-death1 <- avengers %>% count(Death1)
-death1
-
-death1 <- death1 %>% 
-  mutate(perc = n / sum(n)) %>% 
-  arrange(desc(perc)) %>% 
-  mutate(label_pos = cumsum(perc) - perc / 2,
-         perc_text = paste0(round(perc * 100), "%")
-
-
-```
 
 ```{r pie-chart}
+# create a frequency proportion
+death1 <- avengers %>% count(Death1)
+
+# create a percentage variable
+death1 <- death1 %>% 
+  mutate(perc = round(100 * n / sum(n)))
+death1 <- death1 %>% 
+  mutate(perc_perc = paste0(perc, "%"))
+death1
+
 # create color blind friendly palette
 
 # The palette with grey:
@@ -67,14 +63,18 @@ cb.palette <- c("#999999", "#E69F00", "#56B4E9", "#009E73", "#F0E442", "#0072B2"
 # create a pie chart using the original data set
 pie = 
   death1 %>% 
-  ggplot(aes(x = 0, y = "perc", fill = Death1)) +
+  ggplot(aes(x = 0, y = perc, fill = Death1)) +
   geom_bar(stat = "identity", color = "black", width = 1) + 
-  geom_text(aes(y = label_pos, label = perc_text, position = position_stack(vjust = 0.5)) +
+  geom_text(aes(label = perc_perc), position = position_stack(vjust = 0.5)) +
+  labs(fill = 'Has Died At Least Once', 
+              x = NULL, 
+              y = NULL, 
+              title = 'Mortality of the Avengers'
+              ) +
   coord_polar("y") +
   scale_fill_manual(values = cb.palette)
-pie
 
-## create a blank theme
+# create a blank theme
 blank_theme <- 
   theme_void() + 
   theme(axis.title.x = element_blank(),
@@ -110,6 +110,3 @@ ggplot(mapping = aes(x = Gender, fill = Death1)) +
 
 ```
 
-```{r }
-
-```
