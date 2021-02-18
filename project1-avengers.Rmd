@@ -10,7 +10,6 @@ This document illustrates the mortality of the Avengers using a colorblind frien
 
 ```{r}
 library(tidyverse)
-library(waffle)
 ```
 
 ```{r data-import}
