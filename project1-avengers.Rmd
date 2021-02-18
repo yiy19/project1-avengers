@@ -22,29 +22,6 @@ glimpse(avengers)
 ```
 
 ### Mortality of the Avengers 
-```{r mortality, fig.height=5, fig.width=6}
-
-
-# What's the mortality rate of the Avengers?
-# create a new column filled with the total number of the avengers
-avengers <- avengers %>% 
-mutate(total = nrow(avengers))
-names(avengers)         
-
-str(avengers$Death1)
-
-# recode Death1 into numeric
-avengers <- avengers %>% 
-  mutate(death1_recode = recode(Death1, "YES" = '1',
-                                "NO" = '0'))
-
-view(avengers$death1_recode)
-class(avengers$death1_recode)
-avengers$death1_recode <- as.numeric(avengers$death1_recode)
-avengers$death1_recode
-
-```
-
 
 ```{r pie-chart}
 # create a frequency proportion
