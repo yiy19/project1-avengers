@@ -7,6 +7,7 @@ output: html_document
 
 ```{r}
 library(tidyverse)
+library(waffle)
 ```
 
 ```{r data-import}
@@ -19,36 +20,96 @@ glimpse(avengers)
 ```
 
 ```{r mortality, fig.height=5, fig.width=6}
-# create color blind friendly palette
-# The palette with grey:
-cb.palette <- c("#999999", "#E69F00", "#56B4E9", "#009E73", "#F0E442", "#0072B2", "#D55E00", "#CC79A7")
 
-# What's the mortality rate of the Avengers? 
-avengers %>% 
-  ggplot(mapping = aes(x = Death1)) +
-  geom_bar(fill="#E69F00", colour="black") +
-  coord_flip() +
-  labs(x = "Death",
-       y = "Number of Deaths",
-       title = "Mortality of the Avengers") 
+
+# What's the mortality rate of the Avengers?
+# create a new column filled with the total number of the avengers
+avengers <- avengers %>% 
+mutate(total = nrow(avengers))
+names(avengers)         
+
+str(avengers$Death1)
+
+# recode Death1 into numeric
+avengers <- avengers %>% 
+  mutate(death1_recode = recode(Death1, "YES" = '1',
+                                "NO" = '0'))
+
+view(avengers$death1_recode)
+class(avengers$death1_recode)
+avengers$death1_recode <- as.numeric(avengers$death1_recode)
+avengers$death1_recode
+
+```
+
+```{r create-proportion}
+# create a frequency proportion
+
+death1 <- avengers %>% count(Death1)
+death1
+
+death1 <- death1 %>% 
+  mutate(perc = n / sum(n)) %>% 
+  arrange(desc(perc)) %>% 
+  mutate(label_pos = cumsum(perc) - perc / 2,
+         perc_text = paste0(round(perc * 100), "%")
 
 
 ```
+
+```{r pie-chart}
+# create color blind friendly palette
+
+# The palette with grey:
+
+cb.palette <- c("#999999", "#E69F00", "#56B4E9", "#009E73", "#F0E442", "#0072B2", "#D55E00", "#CC79A7")
+                   
+# create a pie chart using the original data set
+pie = 
+  death1 %>% 
+  ggplot(aes(x = 0, y = "perc", fill = Death1)) +
+  geom_bar(stat = "identity", color = "black", width = 1) + 
+  geom_text(aes(y = label_pos, label = perc_text, position = position_stack(vjust = 0.5)) +
+  coord_polar("y") +
+  scale_fill_manual(values = cb.palette)
+pie
+
+## create a blank theme
+blank_theme <- 
+  theme_void() + 
+  theme(axis.title.x = element_blank(),
+        axis.title.y = element_blank(),
+        panel.border = element_blank(),
+        panel.grid = element_blank(),
+        axis.ticks = element_blank(),
+        plot.title = element_text(size = 13, face = "bold"))
+
+# apply blank them
+pie + blank_theme
+
+
+
+```
+
+
 
 ```{r gender-mortality}
 
 #What's the mortality rate of the Avengers by gender?
 avengers %>% 
 ggplot(mapping = aes(x = Gender, fill = Death1)) +
-  geom_bar(colour="black", position = "fill") +
+  geom_bar(colour="black") +
   coord_flip() +
   labs(x = "Death",
        y = "Gender",
        title = "Mortality of the Avengers",
-       subtitle = "By gender") + 
+       subtitle = "By gender",
+       fill = "Died At Least Once") + 
     scale_fill_manual(values=cb.palette)
 
 
 ```
 
-```[r ]
+```{r }
+
+```
