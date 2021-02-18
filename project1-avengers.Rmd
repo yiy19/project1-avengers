@@ -5,6 +5,9 @@ date: "2/16/2021"
 output: html_document
 ---
 
+This document illustrates the mortality of the Avengers. The data are available at https://data.fivethirtyeight.com/.
+
+
 ```{r}
 library(tidyverse)
 library(waffle)
@@ -19,6 +22,7 @@ names(avengers)
 glimpse(avengers)
 ```
 
+### Mortality of the Avengers 
 ```{r mortality, fig.height=5, fig.width=6}
 
 
@@ -91,8 +95,11 @@ pie + blank_theme
 
 ```
 
+This pie chart shows that 40% of the Avengers have died at least once during their mission. 
 
 
+
+### Mortality of the Avengers by Gender
 ```{r gender-mortality}
 
 #What's the mortality rate of the Avengers by gender?
@@ -109,4 +116,6 @@ ggplot(mapping = aes(x = Gender, fill = Death1)) +
 
 
 ```
+
+This bar chart shows that the mortality of the Avengers is significantly higher among males than among females. It is also notable that there are almost twice as many males as female Avengers. 
 
