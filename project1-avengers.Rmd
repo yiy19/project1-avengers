@@ -5,7 +5,7 @@ date: "2/16/2021"
 output: html_document
 ---
 
-This document illustrates the mortality of the Avengers. The data are available at https://data.fivethirtyeight.com/.
+This document illustrates the mortality of the Avengers using a colorblind friendly palette. The data are available at https://data.fivethirtyeight.com/.
 
 
 ```{r}
