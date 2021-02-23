@@ -95,3 +95,14 @@ ggplot(mapping = aes(x = Gender, fill = Death1)) +
 
 This bar chart shows that the mortality of the Avengers is significantly higher among males than among females. It is also notable that there are almost twice as many males as female Avengers. 
 
+### What I learned
+I initially wanted to answer several questions that were addressed in the original article for which the avengers dataset was created. However, I soon found myself struggling with answering the first question about the mortality of the Avengers when I started creating a pie chart. 
+
+There were a couple of challenges. First, approaches to creating a pie chart differed across people who shared the code in the Internet. I didn't know what to choose from, and I tried to put together the different sets of code based on what I understood about them. Second, I couldn't really understand what the code I saw in the Internet did. I had a vague understanding of each component of the code, so it was difficult for me to write coherent code that would integrate the different approaches I came across. Third, in the middle of creating a pie chart and after putting in several hours into the task, I came across one opinion that it might be better to create a waffle chart than a pie chart for what I was doing. Then, I dabbled at it for a while only to decide I would still create a pie chart because I thought it would be more telling of the data I had and because it would involve using ggplot2, which would help me practice using the package. 
+
+I also learned that my approach code needed to change. It was suggested to me that as a literature major who dealt with text and contextual reading all my life, it might not come easily to me that I had to understand every component of written code, instead of focusing on some parts. The suggestion that I might need to adopt a linear, literal, and mechanical interpretation and use of code was enlightening to me because I realized that I had been more liberal in my reading of code. 
+
+Learning these lessons, I was able to put together the code for this project by trying to understand what the code others wrote did and adapting it to my own use. Going forward, I would like to remember the following points:
+1. I need to practice reading and writing code as literal, sequential, and linear as opposed to metaphorical or metonymic, symbolic, and narrative. 
+2. I need to pay attention to every component of code I write including a dot. 
+3. I need to get more familiar with the basic grammar of programming languages. 
