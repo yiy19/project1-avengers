@@ -13,7 +13,7 @@ library(tidyverse)
 ```
 
 ```{r data-import}
-avengers <- read_csv("/Users/yedam/Documents/GitHub/DSP/Project/538-data/avengers/avengers.csv")
+avengers <- read_csv("data/avengers.csv")
 ```
 
 ```{r insepct-data}
